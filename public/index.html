@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="max-age=86400" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Wir laden herzlich zum Unterdorffest Altishausen am 31.08.2024
+    (verschiebe Datum 07.09.24) ein."
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link
+      as="style"
+      rel="stylesheet preload prefetch"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+      type="text/css"
+    />
+    <title>Underdorffest Altishausen</title>
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+      if ("serviceWorker" in navigator) {
+        const {
+          location: { origin },
+        } = window;
+
+        window.addEventListener("load", async () => {
+          const swUrl = `${origin}/service-worker.js`;
+          await navigator.serviceWorker.register(swUrl, {
+            scope: "/",
+            type: "classic",
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
