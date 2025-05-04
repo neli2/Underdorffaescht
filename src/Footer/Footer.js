@@ -38,7 +38,7 @@ const Footer = () => {
           marginTopTablet="15px"
         >
           <Text size="14px" align="right" color={theme.colors.white}>
-            © 2022 TecFox GmbH
+            © 2025 TecFox GmbH
           </Text>
         </Column>
       </Row>

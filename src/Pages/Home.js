@@ -22,7 +22,6 @@ import {
   Spinner,
 } from "../Components/Organisms/Form/SendButton";
 import FormInput from "../Components/Organisms/Form/FormInput";
-import Checkbox from "../Components/Molecules/Checkbox";
 
 const sendingStatus = {
   notSent: 0,
@@ -30,11 +29,6 @@ const sendingStatus = {
   sentWithSuccess: 2,
   sentWithError: 3,
 };
-
-const StyledUL = styled.div`
-  text-align: center;
-  margin: 10px auto;
-`;
 
 const ButtonContainer = styled.div`
   position: relative;
@@ -81,12 +75,6 @@ const Home = () => {
   const [modSnapshots, setModSnapshots] = useState(null);
   const [delSnapshots, setDelSnapshots] = useState(null);
 
-  const handleCheckboxChange = (id) => {
-    form[id]
-      ? setform({ ...form, [id]: false })
-      : setform({ ...form, [id]: true });
-  };
-
   const [form, setform] = useState({
     name: "",
     adult: "",
@@ -117,7 +105,9 @@ const Home = () => {
           option2: false,
         });
       })
-      .catch((err) => setFormSendingStatus(sendingStatus.sentWithError));
+      .catch((err) => {
+        console.log("error set document: ", err);
+        setFormSendingStatus(sendingStatus.sentWithError)});
   };
 
   const sortObjects = (obj) => {
@@ -238,25 +228,6 @@ const Home = () => {
         multiline={true}
       />
     ),
-    createData(
-      "Datum",
-      <div>
-        <Checkbox
-          id="option1"
-          name="option1"
-          label="31.08.2024"
-          value={form["option1"]}
-          onChange={handleCheckboxChange}
-        />
-        <Checkbox
-          id="option2"
-          name="option2"
-          label="07.09.2024 verschiebe Datum"
-          value={form["option2"]}
-          onChange={handleCheckboxChange}
-        />{" "}
-      </div>
-    ),
   ];
 
   const getFormContent = () => {
@@ -298,18 +269,6 @@ const Home = () => {
     }
   };
 
-  const getDates = (row) => {
-    if (row.option1 && row.option2) {
-      return "beide Daten";
-    } else if (row.option1) {
-      return "nur am 31.08.2024";
-    } else if (row.option2) {
-      return "nur am 07.09.2024";
-    } else {
-      return "-";
-    }
-  };
-
   return (
     <>
       <Section
@@ -323,17 +282,34 @@ const Home = () => {
       >
         <TitleH1>Underdorffäscht</TitleH1>
         <Text>
-          Wir laden herzlich zum Unterdorffest Altishausen am 31.08.2024
-          (verschiebe Datum 07.09.24) ein.
+          Wann: 16. August, nur bei guter Witterung
         </Text>
-
-        <StyledUL>
-          <li>Feuerschalen sowie Geschirr und Besteck sind vorhanden. </li>
-          <li>Die Grilladen bitte selbst mitbringen. </li>
-          <li>Getränke können zum Selbstkostenpreis bezogen werden. </li>
-        </StyledUL>
+        <Text>
+          Wo: Frühackerweg Altishausen
+        </Text>
+        <Text>
+          Zeit: Ab 15:30 Uhr
+        </Text>
+        <br/>
+        <br/>
+        <Text>
+          Herzlichen Dank für deine/eure Anmeldung zur 2. Auflage unseres Dorffestes.
+        </Text>
+        <Text>
+          Wir freuen uns, dass du/ihr dabei seid.
+        </Text>
+        <Text>
+          Für dieses Jahr haben wir uns entschieden einen Beitrag von CHF 5. - pro Erwachsene Person zu erheben.
+          Dafür sind alle nicht alkoholischen Getränke für alle (inkl. Kinder) gratis.
+        </Text>
+        <br/>
+        <br/>
+        <Text>
+          Vielen Dank auch für deinen/euren Beitrag ans Buffet - sei es ein Salat oder einen leckeren Dessert.
+          Wir freuen uns auf ein fröhliches Fest mit euch - mit guter Stimmung und tollen Begegnungen.
+        </Text>
+        <br/>
         <Text>Wir freuen uns auf Euch </Text>
-
         <Text>Claudia, Jenni & Sabrina</Text>
       </Section>
       <Section
@@ -363,7 +339,7 @@ const Home = () => {
             marginBottom="30px"
             size="18px"
           >
-            Was möchtest du mitbringen?
+            Wie viele seit ihr und was möchtest du / möchtet ihr mitbringen?
           </Text>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 0 }} aria-label="simple table">
@@ -395,7 +371,6 @@ const Home = () => {
                   <TableCell>Anz. Erwachsene</TableCell>
                   <TableCell>Anz. Kinder</TableCell>
                   <TableCell>Mitbringen</TableCell>
-                  <TableCell>Ich kann teilnehmen am:</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -411,7 +386,6 @@ const Home = () => {
                       <TableCell>{row.adult}</TableCell>
                       <TableCell>{row.children}</TableCell>
                       <TableCell>{row.toBring}</TableCell>
-                      <TableCell>{getDates(row)}</TableCell>
                     </TableRow>
                   ))}
               </TableBody>
