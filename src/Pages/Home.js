@@ -280,9 +280,9 @@ const Home = () => {
         width="80%"
         widthMobile="90%"
       >
-        <TitleH1>Underdorffäscht</TitleH1>
+        <TitleH1>Altishauser Unterdorffest</TitleH1>
         <Text>
-          Wann: 16. August, nur bei guter Witterung
+          Wann: 16. August 2025, nur bei guter Witterung
         </Text>
         <Text>
           Wo: Frühackerweg Altishausen
