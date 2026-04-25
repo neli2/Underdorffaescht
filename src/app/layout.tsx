@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import styles from "./layout.module.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -22,16 +21,16 @@ export default function RootLayout({
         <div className={styles.pageWrapper}>
           <header className={styles.header}>
             <div className={styles.headerContent}>
-              <Link href="/" className={styles.logo}>
-                Unterdorffest
-              </Link>
+              <div className={styles.logo}>
+                Altishauser Unterdorffest
+              </div>
             </div>
           </header>
-          
+
           <main className={styles.main}>
             {children}
           </main>
-          
+
           <footer className={styles.footer}>
             <div className={styles.footerContent}>
               <p>© 2025 TecFox GmbH</p>
