@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <section className={`${styles.heroSection} glass-panel animate-fade-in`}>
-        <h1 className={styles.title}>Altishauser Unterdorffest</h1>
+
         
         <div className={styles.infoGrid}>
           <div className={styles.infoItem}>
