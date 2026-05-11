@@ -14,14 +14,14 @@ const sendingStatus = {
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"bringen" | "uebersicht">("bringen");
   const [registrations, setRegistrations] = useState<any[]>([]);
-  
+
   const [form, setForm] = useState({
     name: "",
     adult: "",
     children: "",
     toBring: "",
   });
-  
+
   const [formSendingStatus, setFormSendingStatus] = useState(sendingStatus.notSent);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function Home() {
         });
       }
     );
-    
+
     return () => unsubscribe();
   }, []);
 
@@ -70,7 +70,7 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name) return; // Basic validation
-    
+
     setFormSendingStatus(sendingStatus.pending);
     setDocument("registrations", form)
       .then(() => {
@@ -93,13 +93,17 @@ export default function Home() {
     <div className={styles.container}>
       <section className={`${styles.heroSection} glass-panel animate-fade-in`}>
 
-        
+        <div className={styles.textContent}>
+          <p>Wir freuen uns riesig, euch zur dritten Ausgabe unseres Altishauser Unterdorffestes einzuladen.</p>
+          <p>Lasst uns zusammen einen gemütlichen Sommerabend verbringen!</p>
+        </div>
+
         <div className={styles.infoGrid}>
           <div className={styles.infoItem}>
-            <strong>Wann:</strong> 16. August 2025, nur bei guter Witterung
+            <strong>Wann:</strong> Samstag, 15. August 2026
           </div>
           <div className={styles.infoItem}>
-            <strong>Wo:</strong> Frühackerweg Altishausen
+            <strong>Wo:</strong> Thurnheer Areal
           </div>
           <div className={styles.infoItem}>
             <strong>Zeit:</strong> Ab 15:30 Uhr
@@ -107,32 +111,26 @@ export default function Home() {
         </div>
 
         <div className={styles.textContent}>
-          <p>Herzlichen Dank für deine/eure Anmeldung zur 2. Auflage unseres Dorffestes.</p>
-          <p>Wir freuen uns, dass du/ihr dabei seid.</p>
+          <p>Vielen Dank für deinen/euren Beitrag ans Buffet - sei es ein Salat oder einen leckeren Dessert.</p>
           <p>
-            Für dieses Jahr haben wir uns entschieden einen Beitrag von CHF 5. - pro Erwachsene Person zu erheben.
-            Dafür sind alle nicht alkoholischen Getränke für alle (inkl. Kinder) gratis.
-          </p>
-          <p>
-            Vielen Dank auch für deinen/euren Beitrag ans Buffet - sei es ein Salat oder einen leckeren Dessert.
-            Wir freuen uns auf ein fröhliches Fest mit euch - mit guter Stimmung und tollen Begegnungen.
+            Für die richtige Glut ist gesorgt: Wir stellen Feuerschalen für euch bereit. Bitte bringt euer liebstes Grillgut einfach selbst mit.
           </p>
           <div className={styles.signature}>
-            <p>Wir freuen uns auf Euch</p>
-            <p><strong>Claudia, Jenni & Sabrina</strong></p>
+            <p>Wir freuen uns auf gute Gespräche, viel Lachen und ein gemütliches Beisammensein mit euch!</p>
+            <p><strong>Jenni, Sabrina & Claudia</strong></p>
           </div>
         </div>
       </section>
 
       <section className={`${styles.tabsSection} glass-panel animate-fade-in stagger-1`}>
         <div className={styles.tabsHeader}>
-          <button 
+          <button
             className={`${styles.tabBtn} ${activeTab === "bringen" ? styles.activeTab : ""}`}
             onClick={() => setActiveTab("bringen")}
           >
             Bringen
           </button>
-          <button 
+          <button
             className={`${styles.tabBtn} ${activeTab === "uebersicht" ? styles.activeTab : ""}`}
             onClick={() => setActiveTab("uebersicht")}
           >
@@ -144,13 +142,13 @@ export default function Home() {
           {activeTab === "bringen" ? (
             <div className="animate-fade-in">
               <h2 className={styles.formTitle}>Wie viele seid ihr und was möchtest du / möchtet ihr mitbringen?</h2>
-              
+
               <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.formGroup}>
                   <label>Name</label>
                   <input required className="input-field" type="text" name="name" value={form.name} onChange={handleFormChange} />
                 </div>
-                
+
                 <div className={styles.formRow}>
                   <div className={styles.formGroup}>
                     <label>Anz. Erwachsene</label>
