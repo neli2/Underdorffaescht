@@ -12,7 +12,9 @@ const sendingStatus = {
 };
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<"bringen" | "uebersicht">("bringen");
+  const [activeTab, setActiveTab] = useState<"bringen" | "uebersicht">(
+    "bringen",
+  );
   const [registrations, setRegistrations] = useState<any[]>([]);
 
   const [form, setForm] = useState({
@@ -22,7 +24,9 @@ export default function Home() {
     toBring: "",
   });
 
-  const [formSendingStatus, setFormSendingStatus] = useState(sendingStatus.notSent);
+  const [formSendingStatus, setFormSendingStatus] = useState(
+    sendingStatus.notSent,
+  );
 
   useEffect(() => {
     const unsubscribe = streamCollection(
@@ -35,7 +39,9 @@ export default function Home() {
               newArray.push(item);
             }
           });
-          return newArray.sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds);
+          return newArray.sort(
+            (a, b) => b.timestamp?.seconds - a.timestamp?.seconds,
+          );
         });
       },
       (mods: any[]) => {
@@ -57,13 +63,15 @@ export default function Home() {
           });
           return newArray;
         });
-      }
+      },
     );
 
     return () => unsubscribe();
   }, []);
 
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -92,10 +100,13 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <section className={`${styles.heroSection} glass-panel animate-fade-in`}>
-
         <div className={styles.textContent}>
-          <p>Wir freuen uns riesig, euch zur dritten Ausgabe unseres Altishauser Unterdorffestes einzuladen.</p>
-          <p>Lasst uns zusammen einen gemütlichen Sommerabend verbringen!</p>
+          <p>Gemeinsam feiern im Unterdorf!</p>
+          <p>
+            Wir freuen uns riesig, euch zur dritten Ausgabe unseres Altishauser
+            Unterdorffestes einzuladen. Lasst uns zusammen einen gemütlichen
+            Sommerabend verbringen!
+          </p>
         </div>
 
         <div className={styles.infoGrid}>
@@ -103,26 +114,38 @@ export default function Home() {
             <strong>Wann:</strong> Samstag, 15. August 2026
           </div>
           <div className={styles.infoItem}>
-            <strong>Wo:</strong> Thurnheer Areal
+            <strong>Zeit:</strong> Ab 15:30 Uhr
           </div>
           <div className={styles.infoItem}>
-            <strong>Zeit:</strong> Ab 15:30 Uhr
+            <strong>Wo:</strong> Thurnheer Areal
           </div>
         </div>
 
         <div className={styles.textContent}>
-          <p>Vielen Dank für deinen/euren Beitrag ans Buffet - sei es ein Salat oder einen leckeren Dessert.</p>
           <p>
-            Für die richtige Glut ist gesorgt: Wir stellen Feuerschalen für euch bereit. Bitte bringt euer liebstes Grillgut einfach selbst mit.
+            Wie letztes Jahr würden wir einen Beitrag von CHF 5. - pro
+            Erwachsene Person erheben. Dafür sind alle nicht alkoholischen
+            Getränke für alle (inkl. Kinder) gratis.
+          </p>
+          <p>
+            Für die richtige Glut ist gesorgt: Wir stellen Feuerschalen für euch
+            bereit. Bitte bringt euer liebstes Grillgut einfach selbst mit.
           </p>
           <div className={styles.signature}>
-            <p>Wir freuen uns auf gute Gespräche, viel Lachen und ein gemütliches Beisammensein mit euch!</p>
-            <p><strong>Jenni, Sabrina & Claudia</strong></p>
+            <p>
+              Wir freuen uns auf gute Gespräche, viel Lachen und ein gemütliches
+              Beisammensein mit euch!
+            </p>
+            <p>
+              <strong>Jenni, Sabrina & Claudia</strong>
+            </p>
           </div>
         </div>
       </section>
 
-      <section className={`${styles.tabsSection} glass-panel animate-fade-in stagger-1`}>
+      <section
+        className={`${styles.tabsSection} glass-panel animate-fade-in stagger-1`}
+      >
         <div className={styles.tabsHeader}>
           <button
             className={`${styles.tabBtn} ${activeTab === "bringen" ? styles.activeTab : ""}`}
@@ -141,28 +164,55 @@ export default function Home() {
         <div className={styles.tabContent}>
           {activeTab === "bringen" ? (
             <div className="animate-fade-in">
-              <h2 className={styles.formTitle}>Wie viele seid ihr und was möchtest du / möchtet ihr mitbringen?</h2>
+              <h2 className={styles.formTitle}>
+                Wie viele seid ihr und was möchtest du / möchtet ihr mitbringen?
+              </h2>
 
               <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.formGroup}>
                   <label>Name</label>
-                  <input required className="input-field" type="text" name="name" value={form.name} onChange={handleFormChange} />
+                  <input
+                    required
+                    className="input-field"
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleFormChange}
+                  />
                 </div>
 
                 <div className={styles.formRow}>
                   <div className={styles.formGroup}>
                     <label>Anz. Erwachsene</label>
-                    <input className="input-field" type="number" name="adult" value={form.adult} onChange={handleFormChange} />
+                    <input
+                      className="input-field"
+                      type="number"
+                      name="adult"
+                      value={form.adult}
+                      onChange={handleFormChange}
+                    />
                   </div>
                   <div className={styles.formGroup}>
                     <label>Anz. Kinder</label>
-                    <input className="input-field" type="number" name="children" value={form.children} onChange={handleFormChange} />
+                    <input
+                      className="input-field"
+                      type="number"
+                      name="children"
+                      value={form.children}
+                      onChange={handleFormChange}
+                    />
                   </div>
                 </div>
 
                 <div className={styles.formGroup}>
                   <label>Mitbringen</label>
-                  <textarea className="input-field" rows={4} name="toBring" value={form.toBring} onChange={handleFormChange} />
+                  <textarea
+                    className="input-field"
+                    rows={4}
+                    name="toBring"
+                    value={form.toBring}
+                    onChange={handleFormChange}
+                  />
                 </div>
 
                 <div className={styles.formActions}>
@@ -172,13 +222,19 @@ export default function Home() {
                     </button>
                   )}
                   {formSendingStatus === sendingStatus.sentWithSuccess && (
-                    <p className={styles.successMsg}>Erfolgreich gespeichert, vielen Dank!</p>
+                    <p className={styles.successMsg}>
+                      Erfolgreich gespeichert, vielen Dank!
+                    </p>
                   )}
                   {formSendingStatus === sendingStatus.sentWithError && (
-                    <p className={styles.errorMsg}>Da ging leider was schief, versuche es bitte nochmal.</p>
+                    <p className={styles.errorMsg}>
+                      Da ging leider was schief, versuche es bitte nochmal.
+                    </p>
                   )}
                   {formSendingStatus === sendingStatus.notSent && (
-                    <button type="submit" className="btn btn-primary">Speichern</button>
+                    <button type="submit" className="btn btn-primary">
+                      Speichern
+                    </button>
                   )}
                 </div>
               </form>
@@ -198,7 +254,9 @@ export default function Home() {
                   <tbody>
                     {registrations.map((row) => (
                       <tr key={row.id || row.name}>
-                        <td data-label="Name"><strong>{row.name}</strong></td>
+                        <td data-label="Name">
+                          <strong>{row.name}</strong>
+                        </td>
                         <td data-label="Erwachsene">{row.adult}</td>
                         <td data-label="Kinder">{row.children}</td>
                         <td data-label="Mitbringen">{row.toBring}</td>
@@ -206,7 +264,9 @@ export default function Home() {
                     ))}
                     {registrations.length === 0 && (
                       <tr>
-                        <td colSpan={4} className={styles.emptyState}>Noch keine Anmeldungen vorhanden.</td>
+                        <td colSpan={4} className={styles.emptyState}>
+                          Noch keine Anmeldungen vorhanden.
+                        </td>
                       </tr>
                     )}
                   </tbody>
